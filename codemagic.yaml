@@ -1,0 +1,42 @@
+definitions:
+  environment_versions: &env_versions
+    xcode: 13.3
+    vars:
+      XCODE_PROJECT: "CountriesSwiftUI.xcodeproj"
+      XCODE_iOS_SCHEME: "CountriesSwiftUI"
+  artifacts:
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Logs/Test/**/*.xcresult
+  scripts:
+    - &run_ios_tests
+      name: Run iOS UI and Unit tests
+      script: |
+        xcode-project run-tests \
+          --project "$XCODE_PROJECT" \
+          --scheme "$XCODE_iOS_SCHEME" \
+          --device "iPhone 12"
+      test_report: build/ios/test/*.xml
+ 
+workflows:
+  ios-mac-pro-workflow:
+    name: iOS Mac Pro Workflow
+    instance_type: mac_pro
+    environment:
+      <<: *env_versions
+    scripts:
+      - *run_ios_tests
+    
+  ios-m1-mac-mini-workflow:
+    name: iOS M1 Mac Mini Workflow
+    instance_type: mac_mini_m1
+    environment:
+      <<: *env_versions
+    scripts:
+      - *run_ios_tests
+      
+  ios-mac-mini-workflow:
+    name: iOS Mac Mini Workflow
+    instance_type: mac_mini
+    environment:
+      <<: *env_versions
+    scripts:
+      - *run_ios_tests
