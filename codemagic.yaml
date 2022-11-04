@@ -7,6 +7,9 @@ definitions:
   artifacts:
       - $HOME/Library/Developer/Xcode/DerivedData/**/Logs/Test/**/*.xcresult
   scripts:
+    - &build
+      name: Build Project 
+      script: xcodebuild build -project "$XCODE_PROJECT" -scheme "$XCODE_iOS_SCHEME" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.1' -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO
     - &run_ios_tests
       name: Run iOS UI and Unit tests
       script: xcodebuild build -project "$XCODE_PROJECT" -scheme "$XCODE_iOS_SCHEME" -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.1' test 
