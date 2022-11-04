@@ -20,6 +20,7 @@ workflows:
     environment:
       <<: *env_versions
     scripts:
+      - *build
       - *run_ios_tests
     
   ios-m1-mac-mini-workflow:
@@ -28,4 +29,5 @@ workflows:
     environment:
       <<: *env_versions
     scripts:
+      - *build
       - *run_ios_tests
