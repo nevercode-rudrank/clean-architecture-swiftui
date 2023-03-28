@@ -1,6 +1,6 @@
 definitions:
   environment_versions: &env_versions
-    xcode: 14.
+    xcode: 14.2
     vars:
       XCODE_PROJECT: "CountriesSwiftUI.xcodeproj"
       XCODE_iOS_SCHEME: "CountriesSwiftUI"
